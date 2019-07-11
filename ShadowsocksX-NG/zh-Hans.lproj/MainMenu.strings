@@ -110,3 +110,8 @@
 /* Class = "NSMenuItem"; title = "Check for Updates..."; ObjectID = "hLv-bp-doM"; */
 "hLv-bp-doM.title" = "检查更新...";
 
+/* Class = "NSMenuItem"; title = "Import Server URLs From Json File"; ObjectID = "J67-KB-NCc"; */
+"J67-KB-NCc.title" = "从JSON配置文件导入服务器";
+
+/* Class = "NSMenuItem"; title = "Export Server URLs To Json File"; ObjectID = "xr0-aN-brA"; */
+"xr0-aN-brA.title" = "导出服务器配置到JSON文件";

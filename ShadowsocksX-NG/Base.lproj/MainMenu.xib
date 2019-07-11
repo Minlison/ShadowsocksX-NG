@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -84,6 +84,18 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="importProfileURLFromPasteboard:" target="Voe-Tx-rLC" id="RwL-Ms-BaC"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Import Server URLs From Json File" id="J67-KB-NCc">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="importBunchJsonFileWithSender:" target="Voe-Tx-rLC" id="ZeI-k9-fRX"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Export Server URLs To Json File" id="xr0-aN-brA">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="exportAllServerProfileWithSender:" target="Voe-Tx-rLC" id="iqB-bk-MDq"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Share Server Profiles..." id="r5z-RB-LIZ">
