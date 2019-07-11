@@ -64,18 +64,6 @@ class ServerProfileManager: NSObject {
     }
 }
 
-extension ServerProfile {
-    
-    var enabledKcptun: Bool {
-        get {
-            return self.plugin == "kcptun"
-        }
-        set {
-            self.plugin = newValue ? "kcptun" : ""
-        }
-    }
-}
-
 extension ServerProfileManager {
     
     
@@ -108,8 +96,10 @@ extension ServerProfileManager {
                     profile.remark = item["remarks"] as! String
                     
                     // Kcptun
-                    profile.enabledKcptun = item["enabled_kcptun"]?.boolValue ?? false
+                    profile.pluginEnable = item["enabled_kcptun"]?.boolValue ?? (item["plugin_enable"]?.boolValue ?? false)
+                    profile.pluginOptions = item["plugin_options"] as? String ?? ""
                     if let kcptun = item["kcptun"] as? [String : Any?] {
+                        profile.plugin = "kcptun"
                         profile.pluginOptions = kcptun.reduce(into: [String]()) { (result, dict) in
                             result.append("\(dict.key)=\(dict.value!)")
                             }.joined(separator: ";")
@@ -160,9 +150,16 @@ extension ServerProfileManager {
             configProfile.setValue(profile.remark.data(using: String.Encoding.utf8)?.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0)), forKey: "remarks_base64")
             
             // Kcptun
-            if profile.enabledKcptun {
-                configProfile.setValue(profile.enabledKcptun, forKey: "enabled_kcptun")
+            configProfile.setValue(profile.pluginEnable, forKey: "plugin_enabled")
+            configProfile.setValue(profile.pluginOptions, forKey: "plugin_options")
+            if profile.plugin == "kcptun" {
+                configProfile.setValue(profile.pluginEnable, forKey: "enabled_kcptun")
                 configProfile.setValue(profile.pluginOptions, forKey: "kcptun_options")
+                let dict = profile.pluginOptions.components(separatedBy: ";").reduce(into: [String : Any?]()) { (result, str) in
+                    let arr = str.components(separatedBy: "=")
+                    result[arr[0]] = arr[1]
+                }
+                configProfile.setValue(dict, forKey: "kcptun")
             }
             
             configsArray.add(configProfile)

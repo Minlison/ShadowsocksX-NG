@@ -20,6 +20,7 @@ class ServerProfile: NSObject, NSCopying {
     @objc var remark:String = ""
     
     // SIP003 Plugin
+    @objc var pluginEnable: Bool = false
     @objc var plugin: String = ""  // empty string disables plugin
     @objc var pluginOptions: String = ""
     

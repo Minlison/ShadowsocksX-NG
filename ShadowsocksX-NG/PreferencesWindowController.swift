@@ -13,6 +13,7 @@ import RxSwift
 class PreferencesWindowController: NSWindowController
     , NSTableViewDataSource, NSTableViewDelegate {
     
+    @IBOutlet weak var pluginCheckBox: NSButton!
     @IBOutlet weak var profilesTableView: NSTableView!
     
     @IBOutlet weak var profileBox: NSBox!
@@ -220,7 +221,9 @@ class PreferencesWindowController: NSWindowController
                 , options: [NSBindingOption.continuouslyUpdatesValue: true])
             passwordSecureTextField.bind(NSBindingName(rawValue: "value"), to: editingProfile, withKeyPath: "password"
                 , options: [NSBindingOption.continuouslyUpdatesValue: true])
-
+            
+            pluginCheckBox.bind(NSBindingName(rawValue: "state"), to: editingProfile, withKeyPath: "pluginEnable"
+                , options: [NSBindingOption.continuouslyUpdatesValue: true])
             pluginTextField.bind(NSBindingName(rawValue: "value"), to: editingProfile, withKeyPath: "plugin"
                 , options: [NSBindingOption.continuouslyUpdatesValue: true])
             pluginOptionsTextField.bind(NSBindingName(rawValue: "value"), to: editingProfile, withKeyPath: "pluginOptions"
@@ -237,6 +240,7 @@ class PreferencesWindowController: NSWindowController
             passwordTextField.unbind(NSBindingName(rawValue: "value"))
             
             remarkTextField.unbind(NSBindingName(rawValue: "value"))
+            pluginCheckBox.state = .off
         }
     }
     

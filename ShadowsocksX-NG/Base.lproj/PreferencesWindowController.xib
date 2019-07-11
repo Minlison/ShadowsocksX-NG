@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,6 +14,7 @@
                 <outlet property="passwordSecureTextField" destination="ZXA-oi-Zv3" id="ZMF-s4-w53"/>
                 <outlet property="passwordTabView" destination="DHz-Hx-kZ5" id="8W3-H3-Ezq"/>
                 <outlet property="passwordTextField" destination="3Ad-X4-DBi" id="FHf-t3-D8t"/>
+                <outlet property="pluginCheckBox" destination="CCz-zI-qdC" id="s39-nl-FkO"/>
                 <outlet property="pluginOptionsTextField" destination="5eh-s9-YH8" id="k4c-c6-OIq"/>
                 <outlet property="pluginTextField" destination="0PP-Ng-z0v" id="Dif-aD-nRE"/>
                 <outlet property="portTextField" destination="lng-AE-g0J" id="7b1-ox-WSL"/>
@@ -272,8 +273,8 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jch-rI-Swc">
-                                    <rect key="frame" x="239" y="85" width="52" height="25"/>
+                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jch-rI-Swc">
+                                    <rect key="frame" x="240" y="84" width="51" height="26"/>
                                     <buttonCell key="cell" type="help" bezelStyle="helpButton" imagePosition="left" borderStyle="border" inset="2" id="IF1-Fy-5la">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -281,6 +282,13 @@
                                     <connections>
                                         <action selector="openPluginHelp:" target="-2" id="ZjN-36-KgP"/>
                                     </connections>
+                                </button>
+                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CCz-zI-qdC">
+                                    <rect key="frame" x="32" y="91" width="22" height="18"/>
+                                    <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="pnQ-il-zIK">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
                                 </button>
                             </subviews>
                             <constraints>
@@ -306,6 +314,7 @@
                                 <constraint firstItem="5eh-s9-YH8" firstAttribute="top" secondItem="0PP-Ng-z0v" secondAttribute="bottom" constant="10" symbolic="YES" id="UkG-FT-EGD"/>
                                 <constraint firstItem="jDI-cn-wYa" firstAttribute="top" secondItem="ef4-8J-eFn" secondAttribute="bottom" constant="9" id="W6a-yU-8qs"/>
                                 <constraint firstAttribute="trailing" secondItem="jch-rI-Swc" secondAttribute="trailing" constant="8" id="YnE-IB-JtU"/>
+                                <constraint firstItem="DGz-Sq-t0c" firstAttribute="leading" secondItem="CCz-zI-qdC" secondAttribute="trailing" constant="8" id="dCr-1Q-WV8"/>
                                 <constraint firstItem="Qfe-Ql-iCO" firstAttribute="top" secondItem="Kft-TG-O5S" secondAttribute="bottom" constant="12" id="djq-w7-QeS"/>
                                 <constraint firstItem="q3C-S0-iNn" firstAttribute="leading" secondItem="Baj-Yh-kmj" secondAttribute="trailing" constant="8" symbolic="YES" id="fF1-hP-3XH"/>
                                 <constraint firstAttribute="bottom" secondItem="q3C-S0-iNn" secondAttribute="bottom" constant="24" id="fwc-hN-vYI"/>
@@ -315,6 +324,7 @@
                                 <constraint firstItem="DHz-Hx-kZ5" firstAttribute="top" secondItem="ef4-8J-eFn" secondAttribute="bottom" constant="8" symbolic="YES" id="iqb-s4-TX5"/>
                                 <constraint firstItem="Otb-CO-KUH" firstAttribute="top" secondItem="lng-AE-g0J" secondAttribute="top" id="j0J-Sd-cQu"/>
                                 <constraint firstItem="R4F-j7-GkK" firstAttribute="leading" secondItem="HPg-NP-kjP" secondAttribute="trailing" constant="8" symbolic="YES" id="j12-ss-DiH"/>
+                                <constraint firstItem="DGz-Sq-t0c" firstAttribute="centerY" secondItem="CCz-zI-qdC" secondAttribute="centerY" id="kIm-Jl-Lkj"/>
                                 <constraint firstItem="0PP-Ng-z0v" firstAttribute="leading" secondItem="DGz-Sq-t0c" secondAttribute="trailing" constant="8" symbolic="YES" id="kqh-yz-OHJ"/>
                                 <constraint firstItem="0PP-Ng-z0v" firstAttribute="top" secondItem="jch-rI-Swc" secondAttribute="top" id="lAA-gu-iQY"/>
                                 <constraint firstItem="DGz-Sq-t0c" firstAttribute="baseline" secondItem="0PP-Ng-z0v" secondAttribute="baseline" id="pTt-vf-Oda"/>
@@ -330,6 +340,7 @@
                                 <constraint firstItem="HPg-NP-kjP" firstAttribute="baseline" secondItem="R4F-j7-GkK" secondAttribute="baseline" id="vhp-5w-4Ky"/>
                                 <constraint firstItem="R4F-j7-GkK" firstAttribute="top" secondItem="a3z-VL-3xV" secondAttribute="top" constant="20" symbolic="YES" id="wR3-qi-PBa"/>
                                 <constraint firstAttribute="trailing" secondItem="0PP-Ng-z0v" secondAttribute="trailing" constant="51" id="x04-bk-8S1"/>
+                                <constraint firstItem="0PP-Ng-z0v" firstAttribute="leading" secondItem="DGz-Sq-t0c" secondAttribute="trailing" constant="8" id="yZ9-ez-czC"/>
                             </constraints>
                         </view>
                         <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
