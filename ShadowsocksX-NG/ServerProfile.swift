@@ -116,6 +116,10 @@ class ServerProfile: NSObject, NSCopying {
             if parts.count == 2 {
                 plugin = String(parts[0])
                 pluginOptions = String(parts[1])
+            } else if parts.count == 3 {
+                plugin = String(parts[0])
+                pluginOptions = String(parts[1])
+                pluginEnable = (String(parts[2]) == "1")
             }
         }
     }
@@ -142,6 +146,9 @@ class ServerProfile: NSObject, NSCopying {
             profile.password = data["Password"] as! String
             if let remark = data["Remark"] {
                 profile.remark = remark as! String
+            }
+            if let enable = data["PluginEnable"] as? NSNumber {
+                profile.pluginEnable = enable.boolValue
             }
             if let plugin = data["Plugin"] as? String {
                 profile.plugin = plugin
@@ -170,6 +177,7 @@ class ServerProfile: NSObject, NSCopying {
         d["Method"] = method as AnyObject?
         d["Password"] = password as AnyObject?
         d["Remark"] = remark as AnyObject?
+        d["PluginEnable"] = NSNumber(booleanLiteral: pluginEnable)
         d["Plugin"] = plugin as AnyObject
         d["PluginOptions"] = pluginOptions as AnyObject
         return d
@@ -185,8 +193,9 @@ class ServerProfile: NSObject, NSCopying {
         conf["timeout"] = NSNumber(value: UInt32(defaults.integer(forKey: "LocalSocks5.Timeout")) as UInt32)
         conf["server"] = serverHost as AnyObject
         conf["server_port"] = NSNumber(value: serverPort as UInt16)
+        conf["plugin_enable"] = NSNumber(booleanLiteral: pluginEnable)
 
-        if !plugin.isEmpty {
+        if pluginEnable && !plugin.isEmpty {
             // all plugin binaries should be located in the plugins dir
             // so that we don't have to mess up with PATH envvars
             conf["plugin"] = "plugins/\(plugin)" as AnyObject
@@ -202,6 +211,7 @@ class ServerProfile: NSObject, NSCopying {
         print("ServerPort=\(serverPort)", to: &buf)
         print("Method=\(method)", to: &buf)
         print("Password=\(String(repeating: "*", count: password.count))", to: &buf)
+        print("PluginEnable=\(pluginEnable)", to: &buf)
         print("Plugin=\(plugin)", to: &buf)
         print("PluginOptions=\(pluginOptions)", to: &buf)
         return buf
@@ -282,7 +292,8 @@ class ServerProfile: NSObject, NSCopying {
 
         var items: [URLQueryItem] = []
         if !plugin.isEmpty {
-            let value = "\(plugin);\(pluginOptions)"
+            let enableStr = (pluginEnable == true ?  "1" : "0")
+            let value = "\(plugin);\(pluginOptions);\(enableStr)"
             items.append(URLQueryItem(name: "plugin", value: value))
         }
 

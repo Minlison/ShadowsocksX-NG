@@ -224,6 +224,7 @@ class PreferencesWindowController: NSWindowController
             
             pluginCheckBox.bind(NSBindingName(rawValue: "state"), to: editingProfile, withKeyPath: "pluginEnable"
                 , options: [NSBindingOption.continuouslyUpdatesValue: true])
+            
             pluginTextField.bind(NSBindingName(rawValue: "value"), to: editingProfile, withKeyPath: "plugin"
                 , options: [NSBindingOption.continuouslyUpdatesValue: true])
             pluginOptionsTextField.bind(NSBindingName(rawValue: "value"), to: editingProfile, withKeyPath: "pluginOptions"
@@ -240,7 +241,7 @@ class PreferencesWindowController: NSWindowController
             passwordTextField.unbind(NSBindingName(rawValue: "value"))
             
             remarkTextField.unbind(NSBindingName(rawValue: "value"))
-            pluginCheckBox.state = .off
+            pluginCheckBox.unbind(NSBindingName("state"))
         }
     }
     
